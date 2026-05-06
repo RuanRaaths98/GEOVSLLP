@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thank You | GEO Audit</title>
+    <meta name="robots" content="noindex" />
+    <style>
+      :root {
+        --canvas: #fffdfa;
+        --paper: #ffffff;
+        --bone: #f8f4ee;
+        --ink: #171411;
+        --muted: #6f6861;
+        --orange: #d96924;
+        --orange-deep: #9e4216;
+        --line: rgba(23, 20, 17, 0.09);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 28px;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 84% 10%, rgba(217, 105, 36, 0.09), transparent 25rem),
+          linear-gradient(90deg, rgba(23, 20, 17, 0.025) 1px, transparent 1px),
+          var(--canvas);
+        background-size: auto, 76px 76px, auto;
+        font-family:
+          "Geist Sans", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+      }
+
+      main {
+        width: min(100%, 720px);
+        text-align: center;
+      }
+
+      .prehead {
+        margin: 0 0 18px;
+        color: var(--orange-deep);
+        font-size: 0.76rem;
+        font-weight: 720;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-family:
+          "Newsreader", "Instrument Serif", Georgia, "Times New Roman", serif;
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 540;
+        letter-spacing: -0.025em;
+        line-height: 1.03;
+      }
+
+      p {
+        max-width: 560px;
+        margin: 22px auto 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.8vw, 1.18rem);
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 50px;
+        margin-top: 30px;
+        padding: 0 24px;
+        border: 1px solid var(--orange);
+        border-radius: 6px;
+        background: var(--orange);
+        color: #fff;
+        font-weight: 720;
+        text-decoration: none;
+      }
+
+      .button:hover {
+        background: var(--orange-deep);
+        border-color: var(--orange-deep);
+      }
+
+      .small {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="prehead" id="statusLine">Submission received</p>
+      <h1>Thank you for your submission.</h1>
+      <p>We will review your answers and be in touch with the next step.</p>
+      <a class="button" href="index.html">Back to the breakdown</a>
+      <p class="small">GEO Audit for South African B2B founders</p>
+    </main>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const leadStatus = params.get("lead");
+      const statusLine = document.querySelector("#statusLine");
+
+      if (leadStatus === "qualified") {
+        statusLine.textContent = "Qualified submission received";
+      }
+
+      if (leadStatus === "early") {
+        statusLine.textContent = "Early-stage submission received";
+      }
+    </script>
+  </body>
+</html>
