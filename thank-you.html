@@ -98,25 +98,12 @@
   </head>
   <body>
     <main>
-      <p class="prehead" id="statusLine">Submission received</p>
+      <p class="prehead">Submission received</p>
       <h1>Thank you for your submission.</h1>
       <p>We will review your answers and be in touch with the next step.</p>
       <a class="button" href="index.html">Back to the breakdown</a>
       <p class="small">GEO Audit for South African B2B founders</p>
     </main>
 
-    <script>
-      const params = new URLSearchParams(window.location.search);
-      const leadStatus = params.get("lead");
-      const statusLine = document.querySelector("#statusLine");
-
-      if (leadStatus === "qualified") {
-        statusLine.textContent = "Qualified submission received";
-      }
-
-      if (leadStatus === "early") {
-        statusLine.textContent = "Early-stage submission received";
-      }
-    </script>
   </body>
 </html>
