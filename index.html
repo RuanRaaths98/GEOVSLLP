@@ -1210,11 +1210,24 @@
         return revenue && revenue.dataset.disqualify !== "true";
       }
 
-      function finishForm() {
+      async function finishForm() {
         const answers = collectFormData();
+        const status = isQualified() ? "qualified" : "early";
         localStorage.setItem("geoAuditQualification", JSON.stringify({ ...answers, capturedAt: new Date().toISOString() }));
 
-        const status = isQualified() ? "qualified" : "early";
+        nextButton.disabled = true;
+        nextButton.textContent = "Submitting…";
+
+        try {
+          await fetch("https://formspree.io/f/xkokkwwr", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify({ ...answers, leadStatus: status }),
+          });
+        } catch (_) {
+          // submission failed silently — still redirect
+        }
+
         window.location.href = `${thankYouUrl}?lead=${status}`;
       }
 
